@@ -37,3 +37,16 @@ async def read_item(item_id: int, q: str | None = None):
         return {"item_id": item_id, "q": q}
     # Otherwise, return just the item_id
     return {"item_id": item_id}
+
+@app.post("/api/generate-resume")
+async def generate_resume(resume_data: str):
+    """
+    Generate a resume from the provided data.
+    
+    Args:
+        resume_data (ResumeData): The data required to generate a resume
+    
+    Returns:
+        dict: A dictionary containing the generated resume
+    """
+    return {"resume": resume_data.model_dump()}
