@@ -2,7 +2,13 @@
 FastAPI application with basic endpoints for demonstration.
 This module provides a simple API with a root endpoint and an items endpoint.
 """
+import os
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
+from groq import Groq
+from pydantic import BaseModel
+from dotenv import load_dotenv
 
 # Initialize the FastAPI application instance
 app = FastAPI()
