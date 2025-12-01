@@ -10,8 +10,22 @@ from groq import Groq
 from pydantic import BaseModel
 from dotenv import load_dotenv
 
-# Initialize the FastAPI application instance
+# Load environment variables from a .env file
+load_dotenv()
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+
+if not GROQ_API_KEY:
+    raise ValueError("GROQ_API_KEY environment variable is not set.")
+
+# Initialize the FastAPI application instance and Groq client
 app = FastAPI()
+client = Groq(api_key=GROQ_API_KEY)
+
+# Configure CORS middleware to allow frontend access
+origins = [
+    "http://localhost:8000"
+]
+
 
 @app.get("/")
 async def read_root():
